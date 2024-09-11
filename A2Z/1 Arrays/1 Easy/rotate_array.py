@@ -67,19 +67,25 @@ rotate_optimal(nums,3)
 print(nums)
 
 
-
-
-"""
-
 # Using reversed()
-
-def rotate(nums, k) -> None:
+def using_python_functions (nums, k) -> None:
     n = len(nums)
     k = k % n
+    # nums.reverse()
     nums[:] = list(reversed(nums))
     nums[:k] = list(reversed(nums[:k]))
     nums[k:] = list(reversed(nums[k:]))
 
-    print(nums)
+nums = [1, 2, 3, 4, 5, 6, 7]
+using_python_functions(nums,3)
+print(nums)
 
-"""
+'''
+reverse():
+This method reverses the list in place, meaning it modifies the original list directly and returns None.
+
+reversed():
+This function returns an iterator that accesses the list elements in reverse order without modifying the original list.
+You need to convert it to a list (or another collection) if you want to see the reversed sequence.
+
+'''
