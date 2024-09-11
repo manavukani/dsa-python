@@ -1,25 +1,27 @@
+# ---------M1---------
 # Time = O(n), Space = O(n)
-def brute_force(arr, k):
-    length = len(arr)
+def brute_force(nums, k):
+    length = len(nums)
     
     if length == 0:
-        return arr
+        return nums
 
     k = k % length
 
     while k > 0:
-        pick = arr[-1]  # last element
+        pick = nums[-1]  # last element
         # Shift all to right
         for i in range(length - 1, 0, -1):
-            arr[i] = arr[i - 1]
-        arr[0] = pick  # Place last element at start
+            nums[i] = nums[i - 1]
+        nums[0] = pick  # Place last element at start
         k -= 1
 
-    return arr
+    return nums
 
+# ---------M2---------
 # Time = O(n), Space = O(k)
-def optimize_brute(arr, k):
-    n = len(arr)
+def optimize_brute(nums, k):
+    n = len(nums)
 
     if n == 0:
         return
@@ -30,18 +32,19 @@ def optimize_brute(arr, k):
         return
 
     # store the last k elements
-    temp = arr[-k:]
+    temp = nums[-k:]
 
     # shift the remaining elements to the right by k
     for i in range(n - k - 1, -1, -1):
-        arr[i + k] = arr[i]
+        nums[i + k] = nums[i]
 
-    # copy from temp to start of the original array
+    # copy from temp to start of the original numsay
     for i in range(k):
-        arr[i] = temp[i]
+        nums[i] = temp[i]
 
-    print(arr)
+    print(nums)
 
+# ---------M3---------
 # Time = O(n), Space = O(1)
 def rotate_optimal(nums, k) -> None:
     k %= len(nums)
@@ -59,6 +62,24 @@ def rotate_optimal(nums, k) -> None:
     # for left shift - first, second, entire
     
 
-arr = [1, 2, 3, 4, 5, 6, 7]
-rotate_optimal(arr,3)
-print(arr)
+nums = [1, 2, 3, 4, 5, 6, 7]
+rotate_optimal(nums,3)
+print(nums)
+
+
+
+
+"""
+
+# Using reversed()
+
+def rotate(nums, k) -> None:
+    n = len(nums)
+    k = k % n
+    nums[:] = list(reversed(nums))
+    nums[:k] = list(reversed(nums[:k]))
+    nums[k:] = list(reversed(nums[k:]))
+
+    print(nums)
+
+"""
