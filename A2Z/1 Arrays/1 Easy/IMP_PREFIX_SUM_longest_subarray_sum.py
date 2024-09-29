@@ -11,17 +11,18 @@ Explanation: The longest subarray with sum 10 is {2, 3, 5}. And its length is 3.
 
 '''
 
-# silly brute force - find all sub arrays
+# silly brute force - find  sum for all sub arrays
 # O (n^3)
 
-
 def brute_force(arr, k):
-    n = len(arr)  # size of the array.
+    n = len(arr)
 
     length = 0
-    for i in range(n):  # starting index
-        for j in range(i, n):  # ending index
-            # add all the elements of subarray = a[i...j]:
+    # for every element
+    for i in range(n):
+        # for every subsequent element
+        for j in range(i, n):
+            # find sum of all the elements of subarray
             s = 0
             for _ in range(i, j+1):
                 s += arr[_]
@@ -32,18 +33,17 @@ def brute_force(arr, k):
 
 # naive approach - brute force
 # instead of using for loop to sum the array
-# we add just the new element
+# we add just the new element, moving sum
 # O (n^2)
-
 
 def brute_n2(arr, k):
     n = len(arr)
-
     length = 0
     for i in range(n):
+        # sum till i_th position
         s = 0
         for j in range(i, n):
-            # add new element
+            # add each new element
             s += arr[j]
 
             if s == k:
@@ -60,7 +60,6 @@ TIME COMPLEXITY: O(N) or O(N*logN) depending on which map data structure we are 
 REASON: For example, if we are using an unordered_map data structure in C++ the time complexity will be O(N)(though in the worst case, unordered_map takes O(N) to find an element and the time complexity becomes O(N2)) but if we are using a map data structure, the time complexity will be O(N*logN). The least complexity will be O(N) as we are using a loop to traverse the array.
 
 '''
-
 
 def better(arr, k):
     pre_sum = {}  # prefix sum map
@@ -83,7 +82,7 @@ def better(arr, k):
             pre_sum[s] = i
     return max_length
 
-# ----------- OPTIMAL --------- BEST IF ONLY POSITIVES & ZERO
+# ----------- OPTIMAL --------- BEST IF ONLY POSITIVES, NO NEGATIVE NUMBERS
 # 2 pointers
 
 
