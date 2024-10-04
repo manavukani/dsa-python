@@ -18,7 +18,7 @@ def brute(matrix):
     dummy = [[0 for _ in range(n)] for _ in range(n)] # empty matrix
     for i in range(n):
         for j in range(i):
-            dummy[j][n - i - 1] = matrix[i][j]
+            dummy[j][n - 1 - i] = matrix[i][j]
     return dummy
 
 # improve space complexity => no extra matrix

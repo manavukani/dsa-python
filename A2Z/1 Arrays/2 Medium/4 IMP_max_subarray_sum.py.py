@@ -28,9 +28,13 @@ def brute(arr):
             maxi = max(maxi, sum)
     return maxi
 
+# ============================================
 # ============ Kadane's Algorithm ============
+# ============================================
 # keep track of sum and make it zero if sum goes negative, reinit sum from next index
 # O(N)
+
+
 def optimal(arr):
     maxi = float('-inf')
     sum = 0
@@ -42,29 +46,33 @@ def optimal(arr):
     return maxi
 
 # FOLLOW_UP => print the subarray with maxi sum ====> REVISIT THIS
+
+
 def print_maxi(arr):
     maxi = float('-inf')
     sum = 0
     start = 0
     ansstart, ansend = -1, -1
     for i in range(len(arr)):
+        # we reset sum to 0 evertime we start a new subarray
         if sum == 0:
             start = i
         sum += arr[i]
         if sum > maxi:
             maxi = sum
+            # update max sum => find the current subarray which has max sum
             ansstart = start
             ansend = i
         if sum < 0:
             sum = 0
-        
-    
+
     print("The subarray is: [", end="")
     for i in range(ansstart, ansend + 1):
         print(arr[i], end=" ")
     print("]")
-    
+
     return maxi
 
-arr= [-2, -1, -3, -4, -1, -2, -1, -5, -4]
+
+arr = [-2, -1, -3, -4, -1, -2, -1, -5, -4]
 print(print_maxi(arr))
