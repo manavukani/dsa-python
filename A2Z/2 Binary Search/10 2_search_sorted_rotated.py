@@ -1,8 +1,8 @@
-# Given an integer array arr of size N, sorted in ascending order (with distinct values) and
+# Given an integer array arr of size N, sorted in ascending order (with non-distinct values) and
 # a target value k. Now the array is rotated at some pivot point unknown to you.
 
 # TODO: RETURN => TRUE if k is present in the array, else FALSE.
-# NOTE: JUST ONE CHANGE => IT MAY HAVE DUPLICATES
+# NOTE: MAY HAVE DUPLICATES
 
 def brute_force(arr, target):
     '''
