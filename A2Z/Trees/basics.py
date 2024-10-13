@@ -145,7 +145,7 @@ class BinaryTree:
 
     Post-order Traversal of Binary Tree using 1 stack
 
-    Preorder, Inorder, and Postorder Traversal in one Traversa
+    Preorder, Inorder, and Postorder Traversal in one Traversal
     '''
     
     def inorder_traversal(self):
