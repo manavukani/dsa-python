@@ -30,20 +30,24 @@ def solve(matrix):
         right -= 1
 
         # L <-------- R
-        for i in range(right, left-1, -1):
-            result.append(matrix[bottom][i])
-        bottom -= 1
+        if (top <= bottom):
+            for i in range(right, left - 1, -1):
+                result.append(matrix[bottom][i])
+
+            bottom -= 1
 
         # Top <------- Bottom
-        for i in range(bottom, top-1, -1):
-            result.append(matrix[i][left])
-        left += 1
-    
+        if (left <= right):
+            for i in range(bottom, top - 1, -1):
+                result.append(matrix[i][left])
+            left += 1
+
     return result
+
 
 mat = [[1, 2, 3, 4],
        [5, 6, 7, 8],
        [9, 10, 11, 12],
        [13, 14, 15, 16]]
-                     
+
 print(solve(mat))
