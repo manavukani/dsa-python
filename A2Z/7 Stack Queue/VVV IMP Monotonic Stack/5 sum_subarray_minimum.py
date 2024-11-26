@@ -1,9 +1,9 @@
-'''
+"""
 OUTPUT =>  arr = [3,1,2,4]
 Explanation: Subarrays = [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4]
 Minimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1
 OUTPUT => 17
-'''
+"""
 
 # brute -> generate all subarray, find min of each subarray, add to result
 # O(n^3) -> O(n^2) for subarrays, O(n) for min of subarray
@@ -14,11 +14,11 @@ def brute(arr):
     res = 0
     for i in range(n):
         for j in range(i, n):
-            res += min(arr[i:j + 1])
+            res += min(arr[i : j + 1])
     return res
 
 
-'''
+"""
 Eg1: arr = [3,1,2,4]
 
 - no. of subarray where 3 is minimum = 1
@@ -35,41 +35,50 @@ Method:
 2. Find the no. of subarray which can be generated -> A * B =  (i - left) * (right - i)
 3. Add no. of subarray * arr[i] to result
 
-'''
+=> Edge case = [1,1,1]
+Solution: consider same element either in nse or pse
+"""
 
-# WORK IN PROGRESS
-
-def previous_smaller_element(arr):
+# we do not consider equal
+# we consider whole array as subset in this
+def find_next_smaller_element(arr):
+    n = len(arr)
+    nse = [n] * n  # Initialize with array length
     stack = []
-    res = []
-    for ele in arr:
-        while stack and stack[-1] >= ele:
+    for i in range(n - 1, -1, -1):
+        while stack and arr[stack[-1]] >= arr[i]:
             stack.pop()
+
         if stack:
-            res.append(stack[-1])
-        else:
-            res.append(-1)
-        stack.append(ele)
-    return res
+            nse[i] = stack[-1]
 
+        stack.append(i)
 
-def next_smaller_element(arr):
+    return nse
+
+# we consider equal
+# we do not consider whole array as subset in this
+def find_previous_smaller_equal_element(arr):
+    n = len(arr)
+    pse = [-1] * n  # Initialize with -1
     stack = []
-    res = []
-    for ele in arr[::-1]:
-        while stack and stack[-1] >= ele:
+    for i in range(n):
+        # don't take >= as we have to consider for
+        # smaller equal element --> eg [1,1,1
+        while stack and arr[stack[-1]] > arr[i]:
             stack.pop()
+        
         if stack:
-            res.append(stack[-1])
-        else:
-            res.append(-1)
-        stack.append(ele)
-    return res[::-1]
+            pse[i] = stack[-1]
+        
+        stack.append(i)
+    
+    return pse
 
 
 def optimal(arr):
-    nse = next_smaller_element(arr)
-    pse = previous_smaller_element(arr)
+    nse = find_next_smaller_element(arr)
+    pse = find_previous_smaller_equal_element(arr)
     total = 0
     for i in range(len(arr)):
         print(i, arr[i], pse[i], nse[i])
@@ -82,5 +91,6 @@ def optimal(arr):
     return total
 
 
-input = [3, 1, 2, 4]
+# input = [3, 1, 2, 4]
+input = [11,81,94,43,3]
 print(optimal(input))
