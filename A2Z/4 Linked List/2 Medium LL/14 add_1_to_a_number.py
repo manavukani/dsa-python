@@ -43,5 +43,25 @@ def brute(head):
         return head
 
 # without reversing --- need to use recursion (backtracking)
+# TC = O(N)
+# SC = O(N) -> Recursive Stack Space
 def optimal(head):
-    pass
+    def helper(head):
+        # base case
+        if head == None:
+            return 1
+
+        carry = helper(head.next)
+        head.val = head.val + carry
+        if head.val < 10:
+            return 0
+        head.val = 0
+        return 1
+
+    carry = helper(head)
+    if carry == 1:
+        newNode = Node(1)
+        newNode.next = head
+        return newNode
+
+    return head
