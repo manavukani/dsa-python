@@ -24,3 +24,7 @@ def solve(arr, goal):
         return cnt
 
     return atMost(goal) - atMost(goal - 1)
+
+# since we are calling 2 times...
+# TC = 2 * O(2N)
+# SC = 2 * O(N)
