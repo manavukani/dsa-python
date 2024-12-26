@@ -7,21 +7,21 @@ class Node:
         self.left = None
         self.right = None
 
+def isSymmetricalHelp(left, right):
+    if not left and not right:
+        return True
+    if not left or not right or left.val != right.val:
+        return False
+    # check opposite sides
+    return isSymmetricalHelp(left.left, right.right) and isSymmetricalHelp(
+        left.right, right.left
+    )
 
 def isSymmetrical(root):
     # if not root:
     #     return True
     return not root or isSymmetricalHelp(root.left, root.right)
 
-
-def isSymmetricalHelp(left, right):
-    if not left and not right:
-        return True
-    if not left or not right or left.val != right.val:
-        return False
-    return isSymmetricalHelp(left.left, right.right) and isSymmetricalHelp(
-        left.right, right.left
-    )
 
 root = Node(1)
 root.left = Node(2)
