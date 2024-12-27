@@ -1,6 +1,6 @@
 class Node:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, val):
+        self.val = val
         self.left = None
         self.right = None
 
@@ -10,13 +10,10 @@ def lca_bst(root, n1, n2):
         return None
     
     while root:
-        # both on the left
-        if root.data > n1 and root.data > n2:
+        if root.val > n1 and root.val > n2:
             root = root.left
-        # both on the right
-        elif root.data < n1 and root.data < n2:
+        elif root.val < n1 and root.val < n2:
             root = root.right
-        # one on left and one on right - curr is LCA
         else:
             break
     return root
@@ -30,4 +27,4 @@ root.left.right.left = Node(10)
 
 n1 = 10
 n2 = 22
-print(lca_bst(root, n1, n2).data)  # 20
+print(lca_bst(root, n1, n2).val)  # 20
