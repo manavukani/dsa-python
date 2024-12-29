@@ -1,7 +1,7 @@
 # value of each node = sum of its children
 # if no children, value of child = 0
 
-# can increment or decrement value of node
+# can only increment value of node
 
 
 class TreeNode:
