@@ -36,7 +36,6 @@ class Solution:
 - Memory Management: The set and dict implementation ensures better handling of the LRU logic without redundant operations, critical for performance-sensitive applications.
 """
 
-
 class Solution:
     def pageFaults(self, N, C, pages):
         # Initialize memory (set), indexes (map), and page_faults counter
@@ -57,7 +56,7 @@ class Solution:
                 # Case 2: Memory is full
                 if page not in memory:
                     # Find the least recently used (LRU) page
-                    lru_page = min(memory, key=lambda p: indexes[p])
+                    lru_page = min(memory, key=lambda i: indexes[i])
                     memory.remove(lru_page)  # Remove the LRU page
                     memory.add(page)  # Insert the current page
                     page_faults += 1
