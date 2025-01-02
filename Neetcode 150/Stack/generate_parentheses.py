@@ -1,3 +1,5 @@
+# TC: O(2^n) but branches does not always split into 2, so it's less than 2^n
+# SC: O(2*n) = O(n)
 def generateParenthesis(n):
     stack = []
     res = []
