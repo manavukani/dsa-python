@@ -1,12 +1,14 @@
 # myAtoi(string s) function, which converts a string to a 32-bit signed integer.
 
-'''
+"""
 1. Ignore white spaces
 2. Return 0 if the first character is not a number or a sign
 3. Determine the sign by checking if the next character is + or -
 4. For out of the 32-bit signed integer range [-2^31, 2^31 - 1], remain in the range
 
-'''
+"""
+
+
 # TC = O(n)
 def myAtoi(s):
     s = s.strip()
@@ -50,13 +52,18 @@ def myAtoi_recursive(s):
     elif s[0].isnumeric():
         start = 0
 
+    # helper function for recursion
     def helper(s, index, number, isNegative):
+        # base case
         if index >= len(s) or not s[index].isnumeric():
             return -number if isNegative else number
 
+        # recursive case
         number = number * 10 + int(s[index])
         return helper(s, index + 1, number, isNegative)
 
+    # recursion with changing index
     result = helper(s, start, 0, isNegative)
+
     number = max(min(result, 2**31 - 1), -(2**31))
     return number
