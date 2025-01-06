@@ -1,0 +1,6 @@
+- rat in a maze
+- m coloring
+- sudoku solver
+- expression add operator
+- kth permutation sequence
+- count inversions
