@@ -2,6 +2,13 @@ import collections
 
 # give number of steps to reach from beginWord to endWord using only those in wordList
 
+"""
+Approach:
+    1. Use a queue (BFS) to store words and steps count.
+    2. Pop each pair from queue and generate all possible one-character transformations for word.
+    3. If a valid transformed word appears in the set, remove it (to avoid revisiting) and push it into the queue, with inc step count.
+    4. Continue until the endWord is reached or no more transformations are possible.
+"""
 
 def ladderLength(beginWord, endWord, wordList):
     q = collections.deque()

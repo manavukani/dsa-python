@@ -25,6 +25,8 @@ def solve(adjMatrix):
 
     visited = [False] * len(adjList)
     provinces = 0
+    
+    # iterate all nodes for multiple components
     for i in range(len(adjList)):
         if not visited[i]:
             provinces += 1

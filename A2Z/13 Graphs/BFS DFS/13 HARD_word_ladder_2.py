@@ -1,12 +1,24 @@
 # one of those questions which you need to see otherwise can't do
 
-# print all the possible paths with shortest length
+# TODO: print all the possible paths with shortest length
 
 from collections import deque
 
 """
 TC: depends on case to case 
 But gives TLE on Leetcode, but logic works fine for interview
+"""
+
+"""
+Approach:
+1. Use BFS to explore all possible paths.
+2. Maintain queue to store the current paths being explored and add further calls.
+3. Use a set to keep track of words used at the current level
+        - Ensure that words used in the current level are removed from the wordList in the next level to avoid cycles.
+        - REASON: multiple path may use same word for same level, so remove afterwards
+4. For last word in the current path, generate all possible transformations
+5. If a transformation is valid (exists in wordList), add it to the current path and continue exploring.
+6. If a path reaches endWord, add it to the result list.
 """
 
 
@@ -28,7 +40,6 @@ def solve(beginWord, endWord, wordList):
         currentPath = q.popleft()
 
         # Remove used words after processing all paths of the current level
-        # REASON: multiple path may use same word for same level, so we remove in next level
         if len(currentPath) > level:
             level += 1
             for w in usedOnLevel:
