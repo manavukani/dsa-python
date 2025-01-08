@@ -12,7 +12,10 @@
 
 INTUTION:
 - BFS to spread rotten oranges in all 4 directions
-- 
+- use a queue to keep track of rotten oranges and time passed
+
+NOTE: Multisource Flood Fill - as we start BFS with all 2s as source
+
 """
 
 
@@ -24,10 +27,8 @@ class Solution:
     def orangesRotting(self, grid) -> int:
         n = len(grid)
         m = len(grid[0])
-
         visited = set()
-        fresh_oranges = 0 # avoid extra loop at end
-
+        fresh_oranges = 0  # avoid extra loop at end
         q = deque()
 
         # add all rotten oranges to queue
@@ -44,14 +45,11 @@ class Solution:
 
         while q:
             r, c, time = q.popleft()
-
             time_max = max(time_max, time)
-
             directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
             for dr, dc in directions:
                 new_row, new_col = r + dr, c + dc
-
                 if (
                     new_row in range(n)
                     and new_col in range(m)
@@ -75,7 +73,7 @@ class Solution:
         return time_max
 
 
-grid = [[2,1,1],[1,1,0],[0,1,1]]
+grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
 print(Solution().orangesRotting(grid))  # 4
 
 """ SPACE OPTIMIZED: O(N*M) time and O(1) space --- NEETCODE APPROACH"""

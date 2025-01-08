@@ -8,13 +8,8 @@ def dfs_recursive(adj):
     dfs_res = []
 
     def dfs(node):
-        # mark as visited
         visited[node] = True
-
-        # add to result
         dfs_res.append(node)
-
-        # visit all neighbors
         for nei in adj[node]:
             if not visited[nei]:
                 dfs(nei)
