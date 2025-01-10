@@ -3,8 +3,7 @@
 
 
 """
-
-... ->  3 ->  4
+.... ->  3 ->  4
         |     |               both are down 3 -> 5 and 4 -> 6
         7 ->  5  -> 6
 
@@ -14,6 +13,7 @@ this would give me a false positive for cycle
 
 # MODIFIED APPROACH: we use visited and path visited. whenever we backtrack from return we reset the path visited node
 # USING DFS
+
 
 def detectCycle(graph):
     visited = [False] * len(graph)
@@ -26,13 +26,15 @@ def detectCycle(graph):
         for nei in graph[node]:
             # not visited
             if not visited[nei]:
+                # any call gives true, return True
                 if dfs(nei):
                     return True
-            # visited and on same path
-            elif pathVisited[nei]:
+
+            # if visited and on same path
+            elif visited[nei] and pathVisited[nei]:
                 return True
 
-        # reset the path visited when backtracking ---- VERY IMP
+        # reset the path visited before return <----- VERY IMP
         pathVisited[node] = False
         return False
 
