@@ -1,3 +1,6 @@
+'''STRIVER APPROACH IS BETTER -- GRAPHS/TOPO SORT'''
+
+# NEETCODE APPROACH
 # FOLLOW UP => print order of execution
 def print_order(num_nodes, edges):
     # write your code here
