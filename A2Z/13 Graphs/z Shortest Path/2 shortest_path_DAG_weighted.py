@@ -11,11 +11,24 @@ Intution:
 - if visited, check for minimum
 - return dist array
 
+
+WHY TOPOLOGICAL SORT (and not Dijsktra or something)??
+- first element of topo sorted order will have inorder = 0 (no incoming edge)
+- there will be no one before it
+- so we move according to reachability
+- source will be the first elemnt of topo sort
+
+MORE ABOUT IT:
+- Finding the shortest path to a vertex is easy if you already know the shortest paths to all the vertices that can precede it. 
+- Finding the longest path to a vertex in DAG is easy if you already know the longest path to all the vertices that can precede it
+- Processing the vertices in topological order ensures that by the time you get to a vertex, you've already processed all the vertices that can precede it.
+- Dijkstra's algorithm is necessary for graphs that can contain cycles, because they can't be topologically sorted.
 """
 
 
-# TC = E +
-def dag_shortes_path(V, E, edges, src=0):
+# TC = O(V+E)
+# SC = O(V+E) ---> adj list,
+def dag_shortes_path(V, E, edges):
     """
     Parameters:
         V (int): Number of vertices in the graph.
@@ -29,7 +42,7 @@ def dag_shortes_path(V, E, edges, src=0):
     for u, v, wt in edges:
         adj[u].append((v, wt))
 
-    # find topological sorted order
+    # find topological sorted order ------------> O(V+E)
     def topo_sort(adj):
         visited = [False] * len(adj)
         stack = []
@@ -57,19 +70,21 @@ def dag_shortes_path(V, E, edges, src=0):
 
     topo_sorted = topo_sort(adj)
 
-    # caluclate distance of edges from source
+    # caluclate distance of edges from source ---------> O(V+E) -- V for while loop of nodes, E for for loop of nei
     distance = [float("inf")] * V
-    distance[src] = 0
+    distance[0] = 0
 
     while topo_sorted:
         # start from first element in the order
         node = topo_sorted[0]
         topo_sorted.pop(0)
 
-        for nei in adj[node]:
-            v = nei[0]
-            wt = nei[1]
-            distance[v] = min(distance[v], distance[node] + wt)
+        # if cannot reach node, no need to check nei
+        if distance[node] != float("inf"):
+            for nei in adj[node]:
+                v = nei[0]
+                wt = nei[1]
+                distance[v] = min(distance[v], distance[node] + wt)
 
     # replace inf with -1 to indicate unreachable nodes
     return [-1 if dist == float("inf") else dist for dist in distance]
