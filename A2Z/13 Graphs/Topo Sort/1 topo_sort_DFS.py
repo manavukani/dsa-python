@@ -29,13 +29,16 @@ def topo_sort(graph):
         if not visited[i]:
             dfs(i)
 
-    # pop from stack
-    ans = []
-    while stack:
-        top = stack.pop()
-        ans.append(top)
+    # # pop from stack
+    # ans = []
+    # while stack:
+    #     top = stack.pop()
+    #     ans.append(top)
 
-    return ans
+    # return ans
+    
+    # basically just reveresd order, saves SC
+    return stack[::-1]
 
 
 graph = [[], [0], [0], [0]]
