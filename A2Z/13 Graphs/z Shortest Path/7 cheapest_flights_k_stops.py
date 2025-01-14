@@ -29,7 +29,6 @@ def findCheapestPrice(n, flights, src, dst, k):
     dist = [float("inf")] * n
     dist[src] = 0
 
-    # cost/distance
     q = deque()  # stops, node, cost
     q.append((0, src, 0))
 
@@ -42,11 +41,10 @@ def findCheapestPrice(n, flights, src, dst, k):
         for neighbor, edgeWt in adj[node]:
             # if total cost to reach neighbor is less than current best cost
             if cost + edgeWt < dist[neighbor] and stops <= k:
-                # update shortest cost to reach neighbor
                 dist[neighbor] = cost + edgeWt
-                # add neighbor to queue with incremented stops
                 q.append((stops + 1, neighbor, cost + edgeWt))
 
+    # cannot reach dst @ end of while loop
     if dist[dst] == float("inf"):
         return -1
 

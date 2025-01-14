@@ -16,7 +16,7 @@ Intution:
 - So we can stop when we reach the destination.
 """
 
-from Queue import PriorityQueue
+from queue import PriorityQueue
 
 # TC = O (E * log V) ----> same as dijkstra
 def minimumEffortPath(heights):

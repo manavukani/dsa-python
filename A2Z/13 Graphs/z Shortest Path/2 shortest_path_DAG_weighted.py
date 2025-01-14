@@ -29,14 +29,6 @@ MORE ABOUT IT:
 # TC = O(V+E)
 # SC = O(V+E) ---> adj list,
 def dag_shortes_path(V, E, edges):
-    """
-    Parameters:
-        V (int): Number of vertices in the graph.
-        E (int): Number of edges in the graph.
-        edges (List[Tuple[int, int, int]]): A list of edges, each represented as a tuple (u, v, weight) where u is the source vertex, v is the destination vertex, and weight is the edge weight.
-        src (int, optional): The source vertex from which to calculate distances. Defaults to 0.
-    """
-
     # convert edges, wt -> adj list
     adj = [[] for _ in range(V)]
     for u, v, wt in edges:
@@ -75,7 +67,7 @@ def dag_shortes_path(V, E, edges):
     distance[0] = 0
 
     while topo_sorted:
-        # start from first element in the order
+        # start from first element in topo sort order
         node = topo_sorted[0]
         topo_sorted.pop(0)
 
@@ -84,6 +76,7 @@ def dag_shortes_path(V, E, edges):
             for nei in adj[node]:
                 v = nei[0]
                 wt = nei[1]
+                # if new dist less than current best, updated
                 distance[v] = min(distance[v], distance[node] + wt)
 
     # replace inf with -1 to indicate unreachable nodes
