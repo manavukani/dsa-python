@@ -4,3 +4,6 @@
 - course schedule
 - course schedule 2
 - word ladder
+- cheapest flights k stops
+- network delay time
+- alient dict
