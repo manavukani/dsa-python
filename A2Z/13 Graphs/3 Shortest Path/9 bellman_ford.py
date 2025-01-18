@@ -14,7 +14,7 @@ NEED:
 ALGO:
 0. order of edges does not matter
 1. relax all edges N-1 time sequentially (ie: N-1 iterations)
-2. after 5 iterations we will get shortest path distance from src to all other nodes
+2. after N-1 iterations we will get shortest path distance from src to all other nodes
 
 APPENDIX:
 - Relax: if new distance is better than current best, update ---> dist[nei] = dis[node] + edgeWt
